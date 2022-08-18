@@ -1,0 +1,33 @@
+syntax = "v1"
+
+info(
+    title: "用户"
+    desc: "用户路由组"
+    author: "Strays"
+    email: "784494731@qq.com"
+    version: "v1"
+)
+
+type UserInfoRequest {
+    Id int `path:"id"`
+}
+
+type UserInfoResp {
+    Id int `json:"id"`
+    Name int `json:"name"`
+    Mobile string `json:"mobile"`
+    Avatar string `json:"avatar"`
+    CreatedTime string `json:"createdTime"`
+}
+
+@server (
+    group: user
+    prefix: api/user
+)
+
+service short-api {
+    @doc "通过ID 获取用户信息"
+    @handler UserHandler
+    get /info/:id (UserInfoRequest) returns (UserInfoResp)
+}
+

@@ -1,0 +1,35 @@
+// 定义API版本
+syntax = "v1"
+
+// 定义文件信息
+info(
+    title: "登录"
+    desc: "登录路由组"
+    author: "Strays"
+    email: "784494731@qq.com"
+    version: "v1"
+)
+
+// 定义请求和返回值
+type LoginRequest {
+    Mobile string `json:"mobile"`
+    Password string `json:"password"`
+}
+
+type LoginResp {
+    Token string `json:"token"`
+}
+
+// 定义一些服务，如中间件，路由组等
+@server(
+    group: auth
+    prefix: api/auth
+)
+
+service short-api {
+    @doc "用户登录"
+    @handler AuthHandler
+    post /login (LoginRequest) returns (LoginResp)
+}
+
+
