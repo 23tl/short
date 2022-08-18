@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	auth "go-zero-short/internal/handler/auth"
+	testing "go-zero-short/internal/handler/testing"
 	user "go-zero-short/internal/handler/user"
 	"go-zero-short/internal/svc"
 
@@ -12,6 +13,17 @@ import (
 )
 
 func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodGet,
+				Path:    "/testing",
+				Handler: testing.TestingHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api"),
+	)
+
 	server.AddRoutes(
 		[]rest.Route{
 			{

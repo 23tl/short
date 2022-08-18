@@ -1,0 +1,25 @@
+syntax = "v1"
+
+info(
+    title: "测试路由"
+    desc: "检测服务是否正常"
+    author: "Strays"
+    email: "784494731@qq.com"
+    version: "v1"
+)
+
+type TestResp {
+    Date string `json:"data"`
+    Name string `json:"name"`
+}
+
+@server (
+    group: testing
+    prefix: api
+)
+
+service short-api {
+    @doc "测试路由"
+    @handler testingHandler
+    get /testing returns (TestResp)
+}
