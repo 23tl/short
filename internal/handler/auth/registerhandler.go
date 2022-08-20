@@ -9,16 +9,16 @@ import (
 	"go-zero-short/internal/types"
 )
 
-func AuthHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func RegisterHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.LoginRequest
+		var req types.RegisterRequest
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.Error(w, err)
 			return
 		}
 
-		l := auth.NewAuthLogic(r.Context(), svcCtx)
-		resp, err := l.Auth(&req)
+		l := auth.NewRegisterLogic(r.Context(), svcCtx)
+		resp, err := l.Register(&req)
 		if err != nil {
 			httpx.Error(w, err)
 		} else {

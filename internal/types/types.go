@@ -15,8 +15,14 @@ type LoginResp struct {
 	Token string `json:"token"`
 }
 
-type UserInfoRequest struct {
-	Id int `path:"id"`
+type RegisterRequest struct {
+	Mobile   string `json:"mobile"`
+	Code     string `json:"code"`
+	Password string `json:"password"`
+}
+
+type RegisterResp struct {
+	Status bool `json:"status"`
 }
 
 type UserInfoResp struct {

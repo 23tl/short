@@ -8,10 +8,7 @@ info(
     version: "v1"
 )
 
-type UserInfoRequest {
-    Id int `path:"id"`
-}
-
+// 获取用户信息
 type UserInfoResp {
     Id int `json:"id"`
     Name int `json:"name"`
@@ -20,14 +17,18 @@ type UserInfoResp {
     CreatedTime string `json:"createdTime"`
 }
 
+
+
 @server (
     group: user
     prefix: api/user
 )
 
 service short-api {
-    @doc "通过ID 获取用户信息"
-    @handler UserHandler
-    get /info/:id (UserInfoRequest) returns (UserInfoResp)
+    @doc "获取当前登录用户信息"
+    @handler CurrentHandler
+    get /current returns (UserInfoResp)
+
+
 }
 

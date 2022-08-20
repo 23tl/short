@@ -20,6 +20,17 @@ type LoginResp {
     Token string `json:"token"`
 }
 
+// 用户注册
+type RegisterRequest {
+    Mobile string `json:"mobile"`
+    Code string `json:"code"`
+    Password string `json:"password"`
+}
+
+type RegisterResp {
+    Status bool `json:"status"`
+}
+
 // 定义一些服务，如中间件，路由组等
 @server(
     group: auth
@@ -28,8 +39,12 @@ type LoginResp {
 
 service short-api {
     @doc "用户登录"
-    @handler AuthHandler
+    @handler LoginHandler
     post /login (LoginRequest) returns (LoginResp)
+
+    @doc "用户注册"
+    @handler RegisterHandler
+    post /register (RegisterRequest) returns (RegisterResp)
 }
 
 
