@@ -12,7 +12,8 @@ type LoginRequest struct {
 }
 
 type LoginResp struct {
-	Token string `json:"token"`
+	Token   string `json:"token"`
+	Expires int64  `json:"expires"`
 }
 
 type RegisterRequest struct {
@@ -27,8 +28,16 @@ type RegisterResp struct {
 
 type UserInfoResp struct {
 	Id          int    `json:"id"`
-	Name        int    `json:"name"`
+	Name        string `json:"name"`
 	Mobile      string `json:"mobile"`
 	Avatar      string `json:"avatar"`
 	CreatedTime string `json:"createdTime"`
+}
+
+type UrlRequest struct {
+	Uri string `json:"uri"`
+}
+
+type UrlResp struct {
+	Uri string `json:"uri"`
 }

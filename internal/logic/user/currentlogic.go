@@ -26,5 +26,11 @@ func NewCurrentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CurrentLo
 func (l *CurrentLogic) Current() (resp *types.UserInfoResp, err error) {
 	// todo: add your logic here and delete this line
 
-	return
+	return &types.UserInfoResp{
+		Id:          1,
+		Name:        "候青晓",
+		Mobile:      "",
+		Avatar:      "",
+		CreatedTime: "2022-08-21 15:12:00",
+	}, nil
 }

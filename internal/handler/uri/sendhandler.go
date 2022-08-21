@@ -1,25 +1,25 @@
-package auth
+package uri
 
 import (
 	"go-zero-short/common/response"
 	"net/http"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
-	"go-zero-short/internal/logic/auth"
+	"go-zero-short/internal/logic/uri"
 	"go-zero-short/internal/svc"
 	"go-zero-short/internal/types"
 )
 
-func LoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func SendHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.LoginRequest
+		var req types.UrlRequest
 		if err := httpx.Parse(r, &req); err != nil {
 			httpx.Error(w, err)
 			return
 		}
 
-		l := auth.NewLoginLogic(r.Context(), svcCtx)
-		resp, err := l.Login(&req)
+		l := uri.NewSendLogic(r.Context(), svcCtx)
+		resp, err := l.Send(&req)
 		//if err != nil {
 		//	httpx.Error(w, err)
 		//} else {

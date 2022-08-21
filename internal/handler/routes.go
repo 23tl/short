@@ -6,6 +6,7 @@ import (
 
 	auth "go-zero-short/internal/handler/auth"
 	testing "go-zero-short/internal/handler/testing"
+	uri "go-zero-short/internal/handler/uri"
 	user "go-zero-short/internal/handler/user"
 	"go-zero-short/internal/svc"
 
@@ -48,6 +49,18 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: user.CurrentHandler(serverCtx),
 			},
 		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/api/user"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/send",
+				Handler: uri.SendHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/uri"),
 	)
 }

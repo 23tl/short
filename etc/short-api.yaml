@@ -7,3 +7,6 @@ CacheRedis:
   - Host: 127.0.0.1
     Pass:
     Type: node
+Auth:
+  AccessSecret: sdhasdkasndlknqw102901021jdklas
+  AccessExpire: 86400

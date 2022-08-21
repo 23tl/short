@@ -1,12 +1,10 @@
 CREATE TABLE `users`
 (
     `id`          bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-    `uuid`        char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci     NOT NULL COMMENT 'uuid',
     `name`        varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
     `mobile`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '手机号',
     `password`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci          DEFAULT NULL COMMENT '密码',
     `avatar`      varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像',
-    `nickname`    varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '昵称',
     `status`      tinyint                                                       NOT NULL DEFAULT '1' COMMENT '状态',
     `extra`       json                                                          DEFAULT NULL COMMENT '额外信息',
     `createdTime` int                                                           NOT NULL COMMENT '创建时间',

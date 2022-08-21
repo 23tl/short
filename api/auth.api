@@ -18,6 +18,7 @@ type LoginRequest {
 
 type LoginResp {
     Token string `json:"token"`
+    Expires int64  `json:"expires"`
 }
 
 // 用户注册

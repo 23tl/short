@@ -11,7 +11,7 @@ info(
 // 获取用户信息
 type UserInfoResp {
     Id int `json:"id"`
-    Name int `json:"name"`
+    Name string `json:"name"`
     Mobile string `json:"mobile"`
     Avatar string `json:"avatar"`
     CreatedTime string `json:"createdTime"`
@@ -20,15 +20,13 @@ type UserInfoResp {
 
 
 @server (
+    jwt: Auth
     group: user
     prefix: api/user
 )
-
 service short-api {
     @doc "获取当前登录用户信息"
     @handler CurrentHandler
     get /current returns (UserInfoResp)
-
-
 }
 

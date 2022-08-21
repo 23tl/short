@@ -1,0 +1,27 @@
+syntax = "v1"
+
+info(
+    title: "用户"
+    desc: "用户路由组"
+    author: "Strays"
+    email: "784494731@qq.com"
+    version: "v1"
+)
+
+type UrlRequest {
+    Uri string `json:"uri"`
+}
+
+type UrlResp {
+    Uri string `json:"uri"`
+}
+
+@server(
+    group: uri
+    prefix : api/uri
+)
+service short-api {
+    @doc "生成短连接"
+    @handler SendHandler
+    post /send (UrlRequest) returns (UrlResp)
+}

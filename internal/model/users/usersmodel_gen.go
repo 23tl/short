@@ -41,12 +41,10 @@ type (
 
 	Users struct {
 		Id          uint64         `db:"id"`          // 自增ID
-		Uuid        string         `db:"uuid"`        // uuid
 		Name        string         `db:"name"`        // 用户名
 		Mobile      string         `db:"mobile"`      // 手机号
 		Password    sql.NullString `db:"password"`    // 密码
 		Avatar      string         `db:"avatar"`      // 头像
-		Nickname    string         `db:"nickname"`    // 昵称
 		Status      int64          `db:"status"`      // 状态
 		Extra       sql.NullString `db:"extra"`       // 额外信息
 		CreatedTime int64          `db:"createdTime"` // 创建时间
@@ -118,8 +116,8 @@ func (m *defaultUsersModel) Insert(ctx context.Context, data *Users) (sql.Result
 	usersIdKey := fmt.Sprintf("%s%v", cacheUsersIdPrefix, data.Id)
 	usersMobileKey := fmt.Sprintf("%s%v", cacheUsersMobilePrefix, data.Mobile)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, usersRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Uuid, data.Name, data.Mobile, data.Password, data.Avatar, data.Nickname, data.Status, data.Extra, data.CreatedTime, data.UpdatedTime, data.DeletedTime)
+		query := fmt.Sprintf("insert into %s (%s) values (?, ?, ?, ?, ?, ?, ?, ?, ?)", m.table, usersRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.Name, data.Mobile, data.Password, data.Avatar, data.Status, data.Extra, data.CreatedTime, data.UpdatedTime, data.DeletedTime)
 	}, usersIdKey, usersMobileKey)
 	return ret, err
 }
@@ -134,7 +132,7 @@ func (m *defaultUsersModel) Update(ctx context.Context, newData *Users) error {
 	usersMobileKey := fmt.Sprintf("%s%v", cacheUsersMobilePrefix, data.Mobile)
 	_, err = m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
 		query := fmt.Sprintf("update %s set %s where `id` = ?", m.table, usersRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, newData.Uuid, newData.Name, newData.Mobile, newData.Password, newData.Avatar, newData.Nickname, newData.Status, newData.Extra, newData.CreatedTime, newData.UpdatedTime, newData.DeletedTime, newData.Id)
+		return conn.ExecCtx(ctx, query, newData.Name, newData.Mobile, newData.Password, newData.Avatar, newData.Status, newData.Extra, newData.CreatedTime, newData.UpdatedTime, newData.DeletedTime, newData.Id)
 	}, usersIdKey, usersMobileKey)
 	return err
 }

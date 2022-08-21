@@ -1,4 +1,4 @@
-package user
+package uri
 
 import (
 	"context"
@@ -9,21 +9,21 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type UserLogic struct {
+type SendLogic struct {
 	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 }
 
-func NewUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserLogic {
-	return &UserLogic{
+func NewSendLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SendLogic {
+	return &SendLogic{
 		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
 	}
 }
 
-func (l *UserLogic) User(req *types.UserInfoRequest) (resp *types.UserInfoResp, err error) {
+func (l *SendLogic) Send(req *types.UrlRequest) (resp *types.UrlResp, err error) {
 	// todo: add your logic here and delete this line
 
 	return
