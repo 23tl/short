@@ -2,7 +2,7 @@ package testing
 
 import (
 	"context"
-	"go-zero-short/common/encry"
+	"go-zero-short/common/encrypt"
 	"time"
 
 	"go-zero-short/internal/svc"
@@ -26,7 +26,7 @@ func NewTestingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *TestingLo
 }
 
 func (l *TestingLogic) Testing() (resp *types.TestResp, err error) {
-	logx.Infof("md5: %v", encry.Md5("123456"))
+	logx.Infof("md5: %v", encrypt.Md5("123456"))
 	dateNow := time.Now()
 	return &types.TestResp{
 		Date: dateNow.Format("2006-01-02 15:04:05"),

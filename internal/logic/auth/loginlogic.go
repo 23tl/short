@@ -2,7 +2,7 @@ package auth
 
 import (
 	"context"
-	"go-zero-short/common/encry"
+	"go-zero-short/common/encrypt"
 	"go-zero-short/common/errorx"
 	"time"
 
@@ -29,7 +29,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResp, err error) {
 	// todo: add your logic here and delete this line
 	now := time.Now().Unix()
-	token, err := encry.Token(l.svcCtx.Config.Auth.AccessSecret, l.svcCtx.Config.Auth.AccessExpire, now, 1)
+	token, err := encrypt.Token(l.svcCtx.Config.Auth.AccessSecret, l.svcCtx.Config.Auth.AccessExpire, now, 1)
 	logx.Infof("token: %v", token)
 	if err != nil {
 		return nil, errorx.NewCodeError(10003, "用户登录失败")

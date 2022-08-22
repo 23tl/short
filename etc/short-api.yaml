@@ -8,5 +8,5 @@ CacheRedis:
     Pass:
     Type: node
 Auth:
-  AccessSecret: sdhasdkasndlknqw102901021jdklas
+  AccessSecret: C1911F487F004FC39AAC55002B3CF4D3
   AccessExpire: 86400

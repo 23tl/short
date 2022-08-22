@@ -1,4 +1,4 @@
-package encry
+package encrypt
 
 import (
 	"github.com/golang-jwt/jwt/v4"

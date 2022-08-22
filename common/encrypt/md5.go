@@ -1,4 +1,4 @@
-package encry
+package encrypt
 
 import (
 	baseMd5 "crypto/md5"
